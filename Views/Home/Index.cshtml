@@ -1,0 +1,128 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<section class="mt-heroWrap">
+    <div class="mt-hero">
+        <div class="mt-heroInner">
+
+            <div class="mt-heroCopy">
+                <div class="mt-kicker">AUTOSECURITY · CURADORIA AUTOMOTIVA</div>
+
+                <h1 class="mt-title">
+                    <span class="mt-titleA">Seu próximo carro.</span>
+                    <span class="mt-titleB">Uma nova história.</span>
+                </h1>
+
+                <p class="mt-subtitle">
+                    Veículos escolhidos a dedo, acessórios que fazem sentido e a liberdade
+                    de encontrar o caminho certo.
+                </p>
+
+                <a class="mt-primaryBtn" asp-controller="Store" asp-action="Index">
+                    Encontre seu próximo carro <span aria-hidden="true">→</span>
+                </a>
+
+                <div class="mt-audiMeta">
+                    <span class="mt-pill">Curadoria</span>
+                    <span class="mt-pill">Garantia</span>
+                    <span class="mt-pill">Entrega PT</span>
+                </div>
+            </div>
+
+            <div class="mt-heroMedia" aria-hidden="true">
+                <div class="mt-orbBadge">
+                    <div class="mt-orbInner">
+                        <small>COM CALMA.<br />COM CRITÉRIO.</small>
+                    </div>
+                </div>
+
+                <svg class="mt-carSvg" viewBox="0 0 820 360">
+                    <defs>
+                        <linearGradient id="mtBody" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0" stop-color="#0f1a16" />
+                            <stop offset="1" stop-color="#050807" />
+                        </linearGradient>
+                        <linearGradient id="mtEdge" x1="0" y1="0" x2="1" y2="0">
+                            <stop offset="0" stop-color="rgba(201,242,106,0)" />
+                            <stop offset=".55" stop-color="rgba(201,242,106,.25)" />
+                            <stop offset="1" stop-color="rgba(201,242,106,0)" />
+                        </linearGradient>
+                    </defs>
+
+                    <ellipse cx="520" cy="295" rx="235" ry="22" fill="rgba(0,0,0,.45)" />
+
+                    <g class="mt-carFloat">
+                        <path d="M210 245c18-46 64-98 126-116 60-18 142-16 209 2 42 11 82 40 104 76 11 18 18 38 22 62H210z"
+                              fill="url(#mtBody)" />
+                        <path d="M238 222c40-63 104-96 192-96 62 0 132 12 178 36 24 13 52 41 64 60"
+                              fill="none" stroke="url(#mtEdge)" stroke-width="6" />
+                        <path d="M340 150c40-18 104-20 152-10 44 9 82 28 102 48l-250 0c-8 0-12-10-4-38z"
+                              fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.10)" />
+                        <path d="M676 222c22 10 44 35 50 62" fill="none"
+                              stroke="rgba(201,242,106,.35)" stroke-width="4" stroke-linecap="round" />
+
+                        <g transform="translate(365 265)">
+                            <g class="mt-wheelSpin">
+                                <circle r="42" fill="#0b0f0d" stroke="rgba(255,255,255,.14)" stroke-width="4" />
+                                <circle r="26" fill="none" stroke="rgba(201,242,106,.25)" stroke-width="2" />
+                                <path d="M0-34 L0 34M-34 0 L34 0M-24-24 L24 24M24-24 L-24 24"
+                                      stroke="rgba(255,255,255,.14)" stroke-width="2" stroke-linecap="round" />
+                            </g>
+                        </g>
+
+                        <g transform="translate(585 265)">
+                            <g class="mt-wheelSpin">
+                                <circle r="42" fill="#0b0f0d" stroke="rgba(255,255,255,.14)" stroke-width="4" />
+                                <circle r="26" fill="none" stroke="rgba(201,242,106,.25)" stroke-width="2" />
+                                <path d="M0-34 L0 34M-34 0 L34 0M-24-24 L24 24M24-24 L-24 24"
+                                      stroke="rgba(255,255,255,.14)" stroke-width="2" stroke-linecap="round" />
+                            </g>
+                        </g>
+                    </g>
+                </svg>
+            </div>
+
+        </div>
+
+        <div class="mt-heroFade" aria-hidden="true"></div>
+    </div>
+
+    <!-- Renderiza apenas a nova barra de pesquisa -->
+    @await Html.PartialAsync("_ProductSearchCard")
+</section>
+
+<section class="mt-section mt-modules">
+    <div class="mt-sectionHeader">
+        <h2>Seleção rápida</h2>
+    </div>
+
+    <div class="mt-moduleGrid">
+        <a class="mt-module" asp-controller="Store" asp-action="Index">
+            <div class="mt-moduleTop">
+                <span class="mt-pill">Carros</span>
+                <span class="mt-moduleArrow" aria-hidden="true">↗</span>
+            </div>
+            <strong>Modelos em destaque</strong>
+            <span>Curadoria com foco em custo-benefício.</span>
+        </a>
+
+        <a class="mt-module" asp-controller="Store" asp-action="Index">
+            <div class="mt-moduleTop">
+                <span class="mt-pill">Acessórios</span>
+                <span class="mt-moduleArrow" aria-hidden="true">↗</span>
+            </div>
+            <strong>Segurança e conforto</strong>
+            <span>Dashcams, sensores, kits e mais.</span>
+        </a>
+
+        <a class="mt-module" asp-controller="Store" asp-action="Index">
+            <div class="mt-moduleTop">
+                <span class="mt-pill">Catálogos</span>
+                <span class="mt-moduleArrow" aria-hidden="true">↗</span>
+            </div>
+            <strong>Compare antes de decidir</strong>
+            <span>Listas curtas, direto ao ponto.</span>
+        </a>
+    </div>
+</section>

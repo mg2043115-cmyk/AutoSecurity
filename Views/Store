@@ -1,0 +1,31 @@
+@model List<AutoSecurity.Models.Product>
+@{
+    ViewData["Title"] = "Loja";
+}
+
+<div class="as-container as-section">
+  <div class="as-section__head">
+    <div>
+      <p class="as-kicker">LOJA</p>
+      <h2 class="as-h2">Catálogo</h2>
+      <p class="as-muted">Use ?categoria=travoes ou ?promo=true</p>
+    </div>
+  </div>
+
+  <div class="as-grid as-grid--4">
+    @foreach (var p in Model)
+    {
+      <div class="as-product">
+        <div class="as-product__top"></div>
+        <div class="as-product__body">
+          <div class="as-product__name">@p.Name</div>
+          <div class="as-product__desc">@p.Description</div>
+          <div class="as-product__row">
+            <div class="as-price">@p.Price.ToString("0.00")€</div>
+            <a class="as-btn as-btn--ghost" href="/Produto/@p.Id">Ver</a>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>

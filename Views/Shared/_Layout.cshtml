@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0b0f0d" />
+
+    <title>@ViewData["Title"] - AutoSecurity</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@1,500;1,600&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+
+    <header class="mt-topbar">
+        <div class="mt-topbarInner">
+
+            <a class="mt-brandLink" asp-controller="Home" asp-action="Index" aria-label="Ir para Home">
+                <span class="mt-brandMark" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                        <path d="M4 15.5V11.3c0-1.1.6-2.2 1.6-2.8l2.2-1.3c.5-.3 1.1-.4 1.7-.4h5c.6 0 1.2.2 1.7.4l2.2 1.3c1 .6 1.6 1.7 1.6 2.8v4.2"
+                              stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                        <path d="M6.5 15.5h11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                        <path d="M7 18a1.25 1.25 0 1 0 0-2.5A1.25 1.25 0 0 0 7 18Zm10 0a1.25 1.25 0 1 0 0-2.5A1.25 1.25 0 0 0 17 18Z"
+                              fill="currentColor" />
+                    </svg>
+                </span>
+
+                <span class="mt-brandText">AutoSecurity<span class="mt-dot">.</span></span>
+            </a>
+
+            <nav class="mt-nav" aria-label="Navegação principal">
+                <a class="mt-navLink" asp-controller="Store" asp-action="Index">Carros</a>
+                <a class="mt-navLink" asp-controller="Store" asp-action="Index">Acessórios</a>
+                <a class="mt-navLink" asp-controller="Store" asp-action="Index">Catálogos</a>
+                <a class="mt-navLink" asp-controller="Home" asp-action="Index">Nossa curadoria</a>
+            </nav>
+
+            <div class="mt-actions">
+                <button class="mt-iconBtn" type="button" aria-label="Favoritos">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 21s-7-4.6-9.3-8.7C.8 8.9 3.2 6 6.4 6c1.8 0 3.2 1 3.6 1.6.4-.6 1.8-1.6 3.6-1.6 3.2 0 5.6 2.9 3.7 6.3C19 16.4 12 21 12 21Z"
+                              stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+                    </svg>
+                </button>
+
+                <a class="mt-iconBtn" asp-controller="Cart" asp-action="Index" aria-label="Carrinho">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                        <path d="M6 7h15l-1.4 7.2a2 2 0 0 1-2 1.6H9a2 2 0 0 1-2-1.6L5 3H2"
+                              stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M9.5 21a1.2 1.2 0 1 0 0-2.4 1.2 1.2 0 0 0 0 2.4Zm8 0a1.2 1.2 0 1 0 0-2.4 1.2 1.2 0 0 0 0 2.4Z"
+                              fill="currentColor" />
+                    </svg>
+                </a>
+
+                @if (User.Identity is { IsAuthenticated: true })
+                {
+                    <form asp-controller="Account" asp-action="Logout" method="post" style="display:inline; margin:0;">
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="mt-ctaTop" style="cursor:pointer; background: rgba(255,255,255,.05);">
+                            @User.Identity?.Name <span aria-hidden="true">· Sair</span>
+                        </button>
+                    </form>
+                }
+                else
+                {
+                    <a class="mt-ctaTop" asp-controller="Account" asp-action="Login">
+                        Iniciar Sessão <span aria-hidden="true">↗</span>
+                    </a>
+                }
+            </div>
+
+        </div>
+    </header>
+
+    <main class="mt-main">
+        @RenderBody()
+    </main>
+
+    <footer class="mt-footer">
+        <div class="mt-footerInner">
+            <span>© @DateTime.Now.Year AutoSecurity.</span>
+            <a asp-controller="Home" asp-action="Privacy">Privacidade</a>
+        </div>
+    </footer>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

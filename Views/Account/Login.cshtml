@@ -1,0 +1,98 @@
+@model AutoSecurity.Models.LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="mt-loginContainer">
+    <div class="mt-loginBox">
+        
+        <form asp-controller="Account" asp-action="Login" asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post" class="mt-loginForm">
+            @Html.AntiForgeryToken()
+
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <div class="mt-loginError">
+                    @Html.ValidationSummary(true, "")
+                </div>
+            }
+
+            <!-- Campo E-mail -->
+            <div class="mt-lineField">
+                <span class="mt-fieldIcon" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </span>
+                <input asp-for="Email" placeholder="E-mail" autocomplete="email" />
+            </div>
+            <span asp-validation-for="Email" class="mt-fieldValError"></span>
+
+            <!-- Campo Senha -->
+            <div class="mt-lineField">
+                <span class="mt-fieldIcon" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>
+                </span>
+                <input asp-for="Password" id="passInput" type="password" placeholder="Senha" />
+                
+                <button type="button" id="togglePassBtn" class="mt-eyeIcon" aria-label="Mostrar/ocultar senha">
+                    <svg id="eyeOpen" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                    <svg id="eyeClosed" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+                        <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                        <line x1="1" y1="1" x2="23" y2="23"></line>
+                    </svg>
+                </button>
+            </div>
+            <span asp-validation-for="Password" class="mt-fieldValError"></span>
+
+            <!-- Manter sessão -->
+            <div class="mt-rememberRow">
+                <label class="mt-checkboxLabel">
+                    <input asp-for="RememberMe" type="checkbox" />
+                    <span>Manter sessão</span>
+                </label>
+            </div>
+
+            <!-- Botão ENTRAR + RECUPERAR PASSWORD -->
+            <div class="mt-actionBtnsRow">
+                <button type="submit" class="mt-btnLoginBtn">ENTRAR</button>
+                <a href="#" class="mt-forgotLink">RECUPERAR PASSWORD</a>
+            </div>
+
+        </form>
+
+        <!-- Secção Inferior: Ainda não tem conta? REGISTAR -->
+        <div class="mt-loginFooter">
+            <p>Ainda não tem conta?</p>
+           <a class="mt-registerBtn" asp-controller="Account" asp-action="Register">REGISTAR</a>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        document.getElementById('togglePassBtn').addEventListener('click', function () {
+            var passInput = document.getElementById('passInput');
+            var eyeOpen = document.getElementById('eyeOpen');
+            var eyeClosed = document.getElementById('eyeClosed');
+
+            if (passInput.type === 'password') {
+                passInput.type = 'text';
+                eyeOpen.style.display = 'none';
+                eyeClosed.style.display = 'block';
+            } else {
+                passInput.type = 'password';
+                eyeOpen.style.display = 'block';
+                eyeClosed.style.display = 'none';
+            }
+        });
+    </script>
+}

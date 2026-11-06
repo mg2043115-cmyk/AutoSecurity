@@ -1,0 +1,63 @@
+<div class="mt-advancedSearch">
+    <!-- LINHA SUPERIOR: Apenas Pesquisa Geral -->
+    <div class="mt-searchTopRow">
+        <form class="mt-mainSearchForm" asp-controller="Store" asp-action="Index" method="get">
+            <div class="mt-searchBarPill">
+                <input name="q" value="@Context.Request.Query["q"]" placeholder="Procurar por artigo, por automóvel, por número de peça..." />
+            </div>
+            <button type="submit" class="mt-topSearchBtn">PESQUISAR</button>
+            <a href="#" class="mt-exampleLink">Exemplo <span class="mt-infoBadge">i</span></a>
+        </form>
+    </div>
+
+    <!-- LINHA INFERIOR: Matrícula + Dropdowns de Veículo -->
+    <div class="mt-searchBottomRow">
+        
+        <!-- Pesquisa por Matrícula -->
+        <form class="mt-plateCol" asp-controller="Store" asp-action="Index" method="get">
+            <span class="mt-colTitle">De acordo com a matrícula inserida</span>
+            <div class="mt-plateFormGroup">
+                <div class="mt-ptPlate">
+                    <div class="mt-plateEU">
+                        <small>★</small>
+                        <strong>P</strong>
+                    </div>
+                    <input name="plate" class="mt-plateInput" placeholder="00-00-XX" maxlength="8" />
+                    <div class="mt-plateDate">
+                        <span>00</span>
+                        <span>11</span>
+                    </div>
+                </div>
+
+                <button type="submit" class="mt-accentSearchBtn">PESQUISAR</button>
+            </div>
+        </form>
+
+        <div class="mt-colDivider"></div>
+
+        <!-- Pesquisa por Marca / Modelo / Motorização -->
+        <form class="mt-selectCol" asp-controller="Store" asp-action="Index" method="get">
+            <span class="mt-colTitle">Peças auto: Selecione um veículo</span>
+            <div class="mt-selectsFormGroup">
+                <select name="brand" class="mt-customSelect">
+                    <option value="">Selecione uma marca</option>
+                    <option value="BMW">BMW</option>
+                    <option value="Audi">Audi</option>
+                    <option value="Mercedes">Mercedes-Benz</option>
+                    <option value="Volkswagen">Volkswagen</option>
+                </select>
+
+                <select name="model" class="mt-customSelect">
+                    <option value="">Selecione um modelo</option>
+                </select>
+
+                <select name="engine" class="mt-customSelect">
+                    <option value="">Selecione uma motorização</option>
+                </select>
+
+                <button type="submit" class="mt-accentSearchBtn">PESQUISAR</button>
+            </div>
+        </form>
+
+    </div>
+</div>

@@ -1,0 +1,17 @@
+@model AutoSecurity.Models.Product
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<div class="as-container as-section">
+  <p class="as-kicker">PRODUTO</p>
+  <h2 class="as-h2">@Model.Name</h2>
+  <p class="as-muted">@Model.Description</p>
+
+  <div style="margin-top:14px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
+    <div class="as-price" style="font-size:22px;font-weight:900;">
+      @Model.Price.ToString("0.00")€
+    </div>
+    <a class="as-btn as-btn--primary" href="/Loja">Voltar à loja</a>
+  </div>
+</div>
